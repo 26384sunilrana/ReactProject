@@ -4,7 +4,7 @@ import "./ExpenseForm.css";
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");  
   //   const [userInputs, setUserInputs] = useState({
   //     enteredTitle='',
   //     enteredAmount='',
@@ -30,6 +30,13 @@ const ExpenseForm = (props) => {
     // });
   };
 
+  const showNewExpenseCreator = () => {
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
+    props.onCancel();
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
     const expenseData = {
@@ -43,6 +50,8 @@ const ExpenseForm = (props) => {
     setEnteredAmount('');
     setEnteredDate('');
   };
+
+
 
   return (
     <form onSubmit={submitHandler}>
@@ -77,6 +86,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+      <button type="button" onClick={showNewExpenseCreator}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
